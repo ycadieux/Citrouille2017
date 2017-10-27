@@ -1,0 +1,22 @@
+﻿<h2>Admin</h2>
+
+<p><button id="start" class="btn btn-primary btn-lg">Start</button></p>
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script>
+        $(function () {
+            // Reference the auto-generated proxy for the hub.
+            var citrouille = $.connection.citrouilleHub;
+
+            // Start the connection.
+            $.connection.hub.start().done(function () {
+                $('#start').click(function () {
+                    // Call the Send method on the hub.
+                    citrouille.server.start();
+                });
+            });
+        });
+    </script>
+}
