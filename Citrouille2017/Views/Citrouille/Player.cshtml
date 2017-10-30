@@ -1,5 +1,11 @@
-﻿<video id="video" controls="controls">
-    <source src="~/Content/videos/bunny.mp4" type="video/mp4">
+﻿@{ 
+    string device = ViewBag.Device;
+}
+
+<h1>@device</h1>
+
+<video id="video" controls="controls">
+    <source src="~/Content/videos/citrouille_@(device).m4v" type="video/mp4">
     Your browser does not support HTML5 video.
 </video>
 
@@ -8,13 +14,13 @@
     <script src="~/signalr/hubs"></script>
     <script>
         $(function () {
+            var loop = true;
             var video = document.getElementById("video");
 
             video.ontimeupdate = function () {
-                console.log(video.currentTime);
-
-                if (video.currentTime > 7) {
-                    video.currentTime = 5;
+                if (loop && video.currentTime > 46) {
+                    //video.volume = 0;
+                    video.currentTime = 44.2;
                 }
             };
 
@@ -22,8 +28,18 @@
             var citrouille = $.connection.citrouilleHub;
             // Create a function that the hub can call back to display messages.
             citrouille.client.Start = function () {
-                video.currentTime = 0;
                 video.play();
+            };
+
+            citrouille.client.Continuer = function () {
+                //video.volume = 1;
+                loop = false;
+            };
+
+            citrouille.client.Reset = function () {
+                console.log("reset");
+                video.pause();
+                video.currentTime = 0;
             };
             
             // Start the connection.

@@ -12,5 +12,15 @@ namespace Citrouille2017.Hubs
         {
             Clients.All.start();
         }
+
+        public void Reset()
+        {
+            Clients.All.reset();
+        }
+
+        public void Continuer()
+        {
+            Clients.All.continuer();
+        }
     }
 }
