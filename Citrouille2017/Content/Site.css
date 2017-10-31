@@ -22,3 +22,13 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+.btn {
+    width:100%;
+}
+#volDown, #volUp {
+    width: 50%;
+    float: left;
+}
+

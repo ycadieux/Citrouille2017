@@ -1,9 +1,14 @@
 ﻿<h2>Admin</h2>
-
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <p><button id="start" class="btn btn-primary btn-lg">Start</button></p>
+<p>&nbsp;</p>
 <p><button id="continuer" class="btn btn-primary btn-lg">Continuer</button></p>
+<p>&nbsp;</p>
 <p><button id="reset" class="btn btn-primary btn-lg">Reset</button></p>
-
+<p>&nbsp;</p>
+<p><button id="volDown" class="btn btn-primary btn-lg">Volume DOWN</button><button id="volUp" class="btn btn-primary btn-lg">Volume UP</button></p>
+<p id="vol"></p>
 @section scripts {
     <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
     <script src="~/signalr/hubs"></script>
@@ -11,9 +16,10 @@
         $(function () {
             // Reference the auto-generated proxy for the hub.
             var citrouille = $.connection.citrouilleHub;
-
+            
             // Start the connection.
             $.connection.hub.start().done(function () {
+
                 $('#start').click(function () {
                     citrouille.server.start();
                 });
@@ -24,6 +30,14 @@
 
                 $('#reset').click(function () {
                     citrouille.server.reset();
+                });
+
+                $('#volDown').click(function () {
+                    citrouille.server.volDown();
+                });
+
+                $('#volUp').click(function () {
+                    citrouille.server.volUp();
                 });
             });
         });

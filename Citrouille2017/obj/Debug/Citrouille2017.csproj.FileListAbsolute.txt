@@ -96,6 +96,5 @@ C:\Projects\Citrouille2017\Citrouille2017\bin\Microsoft.AI.ServerTelemetryChanne
 C:\Projects\Citrouille2017\Citrouille2017\bin\Microsoft.AI.WindowsServer.xml
 C:\Projects\Citrouille2017\Citrouille2017\bin\Microsoft.AI.Web.xml
 C:\Projects\Citrouille2017\Citrouille2017\obj\Debug\Citrouille2017.csprojResolveAssemblyReference.cache
-C:\Projects\Citrouille2017\Citrouille2017\obj\Debug\Citrouille2017.csproj.CoreCompileInputs.cache
 C:\Projects\Citrouille2017\Citrouille2017\obj\Debug\Citrouille2017.dll
 C:\Projects\Citrouille2017\Citrouille2017\obj\Debug\Citrouille2017.pdb

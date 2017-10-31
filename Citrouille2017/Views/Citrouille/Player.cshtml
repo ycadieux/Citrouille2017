@@ -1,11 +1,11 @@
-﻿@{ 
+﻿@{
     string device = ViewBag.Device;
 }
 
 <h1>@device</h1>
 
-<video id="video" controls="controls">
-    <source src="~/Content/videos/citrouille_@(device).m4v" type="video/mp4">
+<video id="video" controls="controls" style="width:100%;height:auto;">
+    <source src="/Content/videos/citrouille_@(device).mp4" type="video/mp4">
     Your browser does not support HTML5 video.
 </video>
 
@@ -13,38 +13,57 @@
     <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
     <script src="~/signalr/hubs"></script>
     <script>
+
+        var loopDebut = (5 * 60) + 52.3;
+        var loopFin = (5 * 60) + 59.1;
+
         $(function () {
             var loop = true;
             var video = document.getElementById("video");
 
+            video.volume = 1;
+
             video.ontimeupdate = function () {
-                if (loop && video.currentTime > 46) {
+                
+                if (loop && video.currentTime > loopFin) {
                     //video.volume = 0;
-                    video.currentTime = 44.2;
+                    video.currentTime = loopDebut;
                 }
             };
 
             // Reference the auto-generated proxy for the hub.
             var citrouille = $.connection.citrouilleHub;
+
             // Create a function that the hub can call back to display messages.
             citrouille.client.Start = function () {
-                video.play();
+                video.currentTime = 5 * 60;
             };
 
             citrouille.client.Continuer = function () {
-                //video.volume = 1;
                 loop = false;
             };
 
             citrouille.client.Reset = function () {
-                console.log("reset");
-                video.pause();
+                loop = true;
+                video.play();
                 video.currentTime = 0;
             };
-            
+
+            citrouille.client.VolDown = function () {
+                if (video.volume > 0.1) {
+                    video.volume = video.volume - 0.1;
+                }
+            };
+
+            citrouille.client.VolUp = function () {
+                if (video.volume < 1) {
+                    video.volume = video.volume + 0.1;
+                }
+            };
+
             // Start the connection.
             $.connection.hub.start().done(function () {
-                
+
             });
         });
     </script>

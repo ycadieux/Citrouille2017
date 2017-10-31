@@ -22,5 +22,15 @@ namespace Citrouille2017.Hubs
         {
             Clients.All.continuer();
         }
+
+        public void VolDown()
+        {
+            Clients.All.volDown();
+        }
+
+        public void VolUp()
+        {
+            Clients.All.volUp();
+        }
     }
 }
